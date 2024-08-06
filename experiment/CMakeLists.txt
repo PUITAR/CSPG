@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_definitions(-w)
 
-set(index_root "${CMAKE_SOURCE_DIR}/../PuiANN")
+set(index_root "${CMAKE_SOURCE_DIR}/../ANNS")
 set(index_include_dir "${index_root}/include")
 set(index_source_dir "${index_root}/src")
 include_directories(${index_include_dir})

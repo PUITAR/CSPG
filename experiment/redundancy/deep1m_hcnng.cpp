@@ -9,7 +9,7 @@
 const std::string comma = ",";
 
 using vdim_t = float;
-using subgraph_t = puiann::graph::HCNNG<vdim_t>;
+using subgraph_t = anns::graph::HCNNG<vdim_t>;
 
 const size_t k = 10;
 const size_t cases = 10;
@@ -49,7 +49,7 @@ int main() {
   csv << "index_type,num_partition,num_random_clusters,min_size_cluters,max_mst_degree,build_time,index_size,num_queries,efq,query_time,comparison,recall,dedup" << std::endl;
 
   for (float dedup = 0.1; dedup <= 0.5; dedup += 0.1) {
-    auto index = std::make_unique<puiann::graph::RandomPartitionGraph<vdim_t, subgraph_t>> (d0, part);
+    auto index = std::make_unique<anns::graph::RandomPartitionGraph<vdim_t, subgraph_t>> (d0, part);
     btimer.Start();
     index->BuildIndex(base_vectors, num_threads, {
       default_params.num_random_clusters, default_params.min_size_cluters, default_params.max_mst_degree, dedup

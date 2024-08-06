@@ -41,7 +41,7 @@ int main() {
   csv_baseline << "index_type,num_partition,max_degree,efc,build_time,index_size,num_queries,efq,query_time,comparison,recall" << std::endl;
   
   auto test = [&] (size_t max_degree, size_t efc) {
-    auto nsg = std::make_unique<puiann::graph::NSG<vdim_t>> (d0, nb, max_degree);
+    auto nsg = std::make_unique<anns::graph::NSG<vdim_t>> (d0, nb, max_degree);
     nsg->SetNumThreads(num_threads);
     build_timer.Reset();
     build_timer.Start();

@@ -2,13 +2,13 @@
 import faiss
 import sys
 
-modules = '/home/dbcloud/ym/CSPG/PuiANN/modules'
+modules = '/home/dbcloud/ym/CSPG/ANNS/modules'
 
 if modules not in sys.path:
   sys.path.append(modules)
 
 from binary_io import *
-import puiann as pui
+import anns as pui
 
 # %%
 base = 'data/base.fvecs'

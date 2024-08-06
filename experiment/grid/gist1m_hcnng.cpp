@@ -41,7 +41,7 @@ int main() {
   csv_baseline << "index_type,num_partition,num_random_clusters,min_size_cluters,max_mst_degree,build_time,index_size,num_queries,efq,query_time,comparison,recall" << std::endl;
 
   auto test = [&] (size_t num_random_clusters, size_t min_size_cluters, size_t max_mst_degree) {
-    auto hcnng = std::make_unique<puiann::graph::HCNNG<vdim_t>> (d0, nb);
+    auto hcnng = std::make_unique<anns::graph::HCNNG<vdim_t>> (d0, nb);
     hcnng->SetNumThreads(num_threads);
     build_timer.Reset();
     build_timer.Start();

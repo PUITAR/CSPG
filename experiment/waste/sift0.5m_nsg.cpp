@@ -12,7 +12,7 @@ const std::string comma = ",";
 
 // Task Configures
 using vdim_t = uint8_t;
-using subgraph_t = puiann::graph::NSG<vdim_t>;
+using subgraph_t = anns::graph::NSG<vdim_t>;
 const size_t k = 10;
 const size_t cases = 10;
 const size_t num_threads = 24;
@@ -46,7 +46,7 @@ int main() {
 
   std::ofstream csv_baseline(csv_path_baseline);
   csv_baseline << "index_type,num_partition,max_degree,efc,build_time,index_size,num_queries,efq,query_time,comparison,recall,w" << std::endl;
-  auto nsg = std::make_unique<puiann::graph::NSG<vdim_t>> (d0, nb, default_params.max_degree);
+  auto nsg = std::make_unique<anns::graph::NSG<vdim_t>> (d0, nb, default_params.max_degree);
   nsg->SetNumThreads(num_threads);
   build_timer.Reset();
   build_timer.Start();

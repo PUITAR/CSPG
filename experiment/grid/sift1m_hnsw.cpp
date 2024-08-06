@@ -45,7 +45,7 @@ int main() {
   std::vector<size_t> efc_list = {64, 128, 256};
 
   auto test = [&] (size_t M, size_t efc) {
-    auto hnsw = std::make_unique<puiann::graph::HNSW<vdim_t>> (
+    auto hnsw = std::make_unique<anns::graph::HNSW<vdim_t>> (
       d0, nb, M, efc);
     hnsw->SetNumThreads(num_threads);
     build_timer.Reset();

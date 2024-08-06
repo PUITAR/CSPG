@@ -13,7 +13,7 @@ const std::string comma = ",";
 
 // Task Configures
 using vdim_t = uint8_t;
-using subgraph_t = puiann::graph::HCNNG<vdim_t>;
+using subgraph_t = anns::graph::HCNNG<vdim_t>;
 const size_t k = 10;
 const size_t cases = 10;
 const size_t num_threads = 24;
@@ -60,7 +60,7 @@ int main() {
   std::ofstream csv_baseline(csv_path_baseline);
   csv_baseline << "index_type,num_partition,num_random_clusters,min_size_cluters,max_mst_degree,build_time,index_size,num_queries,efq,query_time,comparison,recall" << std::endl;
 
-  auto hcnng = std::make_unique<puiann::graph::HCNNG<vdim_t>> (d0, nb);
+  auto hcnng = std::make_unique<anns::graph::HCNNG<vdim_t>> (d0, nb);
   hcnng->SetNumThreads(num_threads);
   build_timer.Reset();
   build_timer.Start();
@@ -91,7 +91,7 @@ int main() {
   csv_parallel << "index_type,num_partition,num_random_clusters,min_size_cluters,max_mst_degree,build_time,index_size,num_queries,efq,query_time,comparison,recall" << std::endl;
 
   build_timer.Reset();
-  auto cspg = std::make_unique<puiann::graph::RandomPartitionGraph<vdim_t, subgraph_t>> (d0, part);
+  auto cspg = std::make_unique<anns::graph::RandomPartitionGraph<vdim_t, subgraph_t>> (d0, part);
   build_timer.Start();
   cspg->BuildIndex(base_vectors, num_threads, 
     {default_params.num_random_clusters, default_params.min_size_cluters, default_params.max_mst_degree, default_params.dedup});

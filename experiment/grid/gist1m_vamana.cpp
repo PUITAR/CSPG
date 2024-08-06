@@ -41,7 +41,7 @@ int main() {
   csv_baseline << "index_type,num_partition,max_degree,alpha,efc,build_time,index_size,num_queries,efq,query_time,comparison,recall" << std::endl;
   
   auto test = [&] (size_t max_degree, float alpha, size_t efc) {
-    auto diskann = std::make_unique<puiann::graph::DiskANN<vdim_t>> (d0, nb, max_degree);
+    auto diskann = std::make_unique<anns::graph::DiskANN<vdim_t>> (d0, nb, max_degree);
     diskann->SetNumThreads(num_threads);
     build_timer.Reset();
     build_timer.Start();

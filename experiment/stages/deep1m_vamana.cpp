@@ -9,7 +9,7 @@
 const std::string comma = ",";
 
 using vdim_t = float;
-using subgraph_t = puiann::graph::DiskANN<vdim_t>;
+using subgraph_t = anns::graph::DiskANN<vdim_t>;
 
 const size_t k = 10;
 const size_t cases = 10;
@@ -48,7 +48,7 @@ int main() {
 
   csv << "index_type,num_partition,max_degree,alpha,efc,build_time,index_size,num_queries,efq1,efq2,query_time,comparison,recall" << std::endl;
 
-  auto index = std::make_unique<puiann::graph::RandomPartitionGraph<vdim_t, subgraph_t>> (d0, part);
+  auto index = std::make_unique<anns::graph::RandomPartitionGraph<vdim_t, subgraph_t>> (d0, part);
   btimer.Start();
   index->BuildIndex(base_vectors, num_threads, {
     default_params.max_degree, default_params.alpha, default_params.efc, default_params.dedup

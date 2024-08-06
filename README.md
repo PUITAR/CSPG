@@ -18,6 +18,9 @@ cmake ..
 make -j
 ```
 
+## Dataset
+All dataset we used for the evaluation can be download at [ANN-Benchmark](https://github.com/erikbern/ann-benchmarks) or other public repo. You should replace the base data path, query data path and groundtruth data path in each *cpp.
+
 ## Run the Experiment
 
 ```shell

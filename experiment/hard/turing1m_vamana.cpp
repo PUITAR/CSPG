@@ -13,7 +13,7 @@ const std::string comma = ",";
 
 // Task Configures
 using vdim_t = float;
-using subgraph_t = puiann::graph::DiskANN<vdim_t>;
+using subgraph_t = anns::graph::DiskANN<vdim_t>;
 const size_t k = 10;
 const size_t cases = 10;
 const size_t num_threads = 24;
@@ -58,7 +58,7 @@ int main() {
 #if defined (BASELINE)
   std::ofstream csv_baseline(csv_path_baseline);
   csv_baseline << "index_type,num_partition,max_degree,alpha,efc,build_time,index_size,num_queries,efq,query_time,comparison,recall" << std::endl;
-  auto diskann = std::make_unique<puiann::graph::DiskANN<vdim_t>> (d0, nb, default_params.max_degree);
+  auto diskann = std::make_unique<anns::graph::DiskANN<vdim_t>> (d0, nb, default_params.max_degree);
   diskann->SetNumThreads(num_threads);
   build_timer.Reset();
   build_timer.Start();
@@ -88,7 +88,7 @@ int main() {
   std::ofstream csv_parallel(csv_path_parallel);
   csv_parallel << "index_type,num_partition,max_degree,alpha,efc,build_time,index_size,num_queries,efq,query_time,comparison,recall" << std::endl;
   build_timer.Reset();
-  auto cspg = std::make_unique<puiann::graph::RandomPartitionGraph<vdim_t, subgraph_t>> (d0, part);
+  auto cspg = std::make_unique<anns::graph::RandomPartitionGraph<vdim_t, subgraph_t>> (d0, part);
   build_timer.Start();
   cspg->BuildIndex(base_vectors, num_threads, {default_params.max_degree, default_params.alpha, default_params.efc, default_params.dedup});
   build_timer.Stop();
