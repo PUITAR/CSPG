@@ -58,8 +58,8 @@ programs_list = {
     'gist1m_hcnng_cmp', 'gist1m_hnsw_cmp', 'gist1m_vamana_cmp', 'gist1m_nsg_cmp',
   ], 
   'distribution': [
-    # 'rcd_hnsw', 'rcd_hcnng', 
-    'rcd_vamana', 'rcd_nsg'
+    # 'gcd_hnsw', 'gcd_hcnng', 'gcd_vamana', 'gcd_nsg',
+    'gud_hnsw', 'gud_hcnng', 'gud_vamana', 'gud_nsg'
   ]
 }
 

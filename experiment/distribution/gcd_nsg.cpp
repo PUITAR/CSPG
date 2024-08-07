@@ -13,7 +13,7 @@ const std::string comma = ",";
 
 // Task Configures
 using vdim_t = float;
-using subgraph_t = anns::graph::HNSW<vdim_t>;
+using subgraph_t = anns::graph::NSG<vdim_t>;
 const size_t k = 10;
 const size_t cases = 10;
 const size_t num_threads = 24;
@@ -24,12 +24,11 @@ const std::string queries_vectors_path = "/home/dbcloud/ym/CSPG/experiment/distr
 const std::string groundtruth_path = "/home/dbcloud/ym/CSPG/experiment/distribution/data/gt.ivecs";
 
 #if defined (BASELINE)
-const std::string csv_path_baseline= "output/distribution/rcd_hnsw_baseline.csv";
+const std::string csv_path_baseline = "output/distribution/gcd_nsg_baseline.csv";
 #endif
-
 #if defined (PARALLEL)
 const size_t part = 2;
-const std::string csv_path_parallel = "output/distribution/rcd_hnsw_cspg_"+std::to_string(part)+".csv";
+const std::string csv_path_parallel = "output/distribution/gcd_nsg_cspg_"+std::to_string(part)+".csv";
 #endif
 
 // Parameters
@@ -54,17 +53,15 @@ int main() {
   
   utils::STimer build_timer;
   utils::STimer query_timer;
-  
+
 #if defined (BASELINE)
   std::ofstream csv_baseline(csv_path_baseline);
   csv_baseline << "index_type,num_partition,max_degree,efc,build_time,index_size,num_queries,efq,query_time,comparison,recall" << std::endl;
-
-  auto hnsw = std::make_unique<anns::graph::HNSW<vdim_t>> (
-    d0, nb, default_params.max_degree, default_params.efc);
-  hnsw->SetNumThreads(num_threads);
+  auto nsg = std::make_unique<anns::graph::NSG<vdim_t>> (d0, nb, default_params.max_degree);
+  nsg->SetNumThreads(num_threads);
   build_timer.Reset();
   build_timer.Start();
-  hnsw->Populate(base_vectors);
+  nsg->BuildIndex(base_vectors, default_params.efc);
   build_timer.Stop();
   for (size_t efq = 10; efq <= 300; efq += 10) {
     std::vector<std::vector<id_t>> knn;
@@ -74,28 +71,28 @@ int main() {
     for (size_t t = 0; t < cases; t++) {
       query_timer.Reset();
       query_timer.Start();
-      hnsw->Search(nest_queries_vectors, k, efq, knn, dis);
+      nsg->Search(nest_queries_vectors, k, efq, knn, dis);
       query_timer.Stop();
       qt += query_timer.GetTime();
-      comparison = hnsw->GetComparisonAndClear();
+      comparison = nsg->GetComparisonAndClear();
     }
     double recall = utils::GetRecall(k, d2, groundtruth, knn);
-    csv_baseline << "hnsw" << comma << 1 << comma << default_params.max_degree << comma << default_params.efc << comma
-      << build_timer.GetTime() << comma << hnsw->IndexSize() << comma << nq << comma
+    csv_baseline << "nsg" << comma << 1 << comma << default_params.max_degree << comma
+      << default_params.efc << comma << build_timer.GetTime() << comma << nsg->IndexSize() << comma << nq << comma
       << efq << comma << qt/cases << comma << comparison << comma << recall << std::endl;
   }
 #endif
-
+  
 #if defined (PARALLEL)
   std::ofstream csv_parallel(csv_path_parallel);
   csv_parallel << "index_type,num_partition,max_degree,efc,build_time,index_size,num_queries,efq,query_time,comparison,recall" << std::endl;
-
   build_timer.Reset();
   auto cspg = std::make_unique<anns::graph::RandomPartitionGraph<vdim_t, subgraph_t>> (d0, part);
   build_timer.Start();
   cspg->BuildIndex(base_vectors, num_threads, {default_params.max_degree, default_params.efc, default_params.dedup});
   build_timer.Stop();
-  for (size_t efq = 10; efq <= 300; efq += 10) {
+
+  for (size_t efq = 10; efq <= 200; efq += 10) {
     std::vector<std::vector<id_t>> knn;
     double qt = 0;
     size_t comparison;

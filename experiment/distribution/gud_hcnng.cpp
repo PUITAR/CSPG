@@ -19,17 +19,17 @@ const size_t cases = 10;
 const size_t num_threads = 24;
 
 // Files
-const std::string base_vectors_path = "/home/dbcloud/ym/CSPG/experiment/distribution/data/base.fvecs";
-const std::string queries_vectors_path = "/home/dbcloud/ym/CSPG/experiment/distribution/data/query.fvecs";
-const std::string groundtruth_path = "/home/dbcloud/ym/CSPG/experiment/distribution/data/gt.ivecs";
+const std::string base_vectors_path = "/home/dbcloud/ym/CSPG/experiment/distribution/data/ubase.fvecs";
+const std::string queries_vectors_path = "/home/dbcloud/ym/CSPG/experiment/distribution/data/uquery.fvecs";
+const std::string groundtruth_path = "/home/dbcloud/ym/CSPG/experiment/distribution/data/ugt.ivecs";
 
 #if defined (BASELINE)
-const std::string csv_path_baseline= "output/distribution/rcd_hcnng_baseline.csv";
+const std::string csv_path_baseline= "output/distribution/gud_hcnng_baseline.csv";
 #endif
 
 #if defined (PARALLEL)
 const size_t part = 2;
-const std::string csv_path_parallel = "output/distribution/rcd_hcnng_cspg_"+std::to_string(part)+".csv";
+const std::string csv_path_parallel = "output/distribution/gud_hcnng_cspg_"+std::to_string(part)+".csv";
 #endif
 
 // Parameters

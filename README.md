@@ -19,7 +19,9 @@ make -j
 ```
 
 ## Dataset
-All dataset we used for the evaluation can be download at [ANN-Benchmark](https://github.com/erikbern/ann-benchmarks) or other public repo. You should replace the base data path, query data path and groundtruth data path in each *cpp.
+All dataset we used for the evaluation can be download at [ANN-Benchmark](https://github.com/erikbern/ann-benchmarks) or other public repo. You should replace the base data path, query data path and groundtruth data path with your data path by a global replacement (e.g. ctrl+H in vscode). All dataset should be in the format of `fvecs`, `ivecs`, `fbin` and `ibin`. You can use the functions in `ANNS/utils/binary_io.hpp` or use functions in `ANNS/modlues/binary_io.py`.
+
+## Usage
 
 ## Run the Experiment
 
