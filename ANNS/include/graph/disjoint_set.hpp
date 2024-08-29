@@ -1,5 +1,4 @@
-#ifndef INCLUDE_DISJOINT_SET_HPP
-#define INCLUDE_DISJOINT_SET_HPP
+#pragma once
 
 #include <vector>
 #include <sys/types.h>
@@ -36,6 +35,3 @@ private:
 };
 
 } // namespace index
-
-
-#endif // !INCLUDE_DISJOINT_SET_HPP

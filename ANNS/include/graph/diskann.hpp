@@ -1,5 +1,4 @@
-#ifndef INCLUDE_DISKANN_HPP
-#define INCLUDE_DISKANN_HPP
+#pragma once
 
 // #include <index_status.hpp>
 // #include <graph/visited_list_pool.hpp>
@@ -125,5 +124,3 @@ namespace anns
   } // namespace graph
 
 } // namespace index
-
-#endif // INCLUDE_DISKANN_HPP

@@ -3,8 +3,6 @@
 #include <utils/binary_io.hpp>
 #include <utils/stimer.hpp>
 
-#include <vector_ops.hpp>
-
 #include <algorithm>
 #include <memory>
 

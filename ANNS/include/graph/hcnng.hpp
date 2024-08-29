@@ -1,8 +1,6 @@
-#ifndef INCLUDE_HCNNG_HPP
-#define INCLUDE_HCNNG_HPP
+#pragma once
 
 #include <vector_ops.hpp>
-// #include <graph/visited_list_pool.hpp>
 
 #include <random>
 #include <iostream>
@@ -209,5 +207,3 @@ namespace anns
   } // namespace graph
 
 } // namespace index
-
-#endif

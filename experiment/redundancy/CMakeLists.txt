@@ -17,6 +17,8 @@ foreach(_target
   gist1m_vamana
   gist1m_hcnng
   gist1m_nsg
+
+  sift1m_bin
 )
   add_executable(${ITEM}_${_target} "${_target}.cpp" ${index_source})
   target_compile_options(${ITEM}_${_target} PUBLIC 

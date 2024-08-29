@@ -210,7 +210,7 @@ namespace anns
         else
         {
           // Do nothing for the first element
-          enterpoint_node_ = 0;
+          enterpoint_node_ = cur_id;
           max_level_ = cur_level;
         }
 
@@ -231,10 +231,6 @@ namespace anns
         for (size_t i = 0; i < N; i++)
         {
           AddPoint(raw_data.data() + i * D_);
-          if (i == 0) {
-                    std::ofstream fout("/home/dbcloud/ym/CSPG/experiment/distribution/a.txt");
-        fout << "In AddPoint " << omp_get_num_threads() << std::endl;
-          }
         }
 
         ready_ = true;
@@ -246,15 +242,11 @@ namespace anns
         assert(N <= max_elements_ && "data size too large!");
 
 #pragma omp parallel for schedule(dynamic, 1) num_threads(num_threads_)
-        for (size_t i = 0; i < N; i++) {
-           AddPoint(raw_data[i]);
-            if (i == 0) {
-                    std::ofstream fout("/home/dbcloud/ym/CSPG/experiment/distribution/a.txt");
-        fout << "In AddPoint " << omp_get_num_threads() << std::endl;
-          }
+        for (size_t i = 0; i < N; i++)
+        {
+          AddPoint(raw_data[i]);
         }
-         
-    
+
         ready_ = true;
       }
 
@@ -273,7 +265,7 @@ namespace anns
         float cur_dist = vec_L2sqr(query_data, GetDataByInternalID(enterpoint_node_), D_);
         comparison++;
 
-        for (int lev = max_level_; lev > 0; lev--)
+        for (int lev = element_levels_[enterpoint_node_]; lev > 0; lev--)
         {
           // find the closet node in upper layers
           bool changed = true;
@@ -729,7 +721,7 @@ namespace anns
         float dist = vec_L2sqr(data_point, GetDataByInternalID(wander), D_);
         comparison++;
 
-        for (int lev = max_level_; lev > 0; lev--)
+        for (int lev = element_levels_[enterpoint_node_]; lev > 0; lev--)
         {
           bool moving = true;
           while (moving)
@@ -752,9 +744,7 @@ namespace anns
             comparison += sz;
           }
         }
-
         comparison_.fetch_add(comparison);
-
         return wander;
       }
 
@@ -901,7 +891,7 @@ namespace anns
         float cur_dist = vec_L2sqr(query_data, GetDataByInternalID(enterpoint_node_), D_);
         comparison++;
 
-        for (int lev = max_level_; lev > 0; lev--)
+        for (int lev = element_levels_[enterpoint_node_]; lev > 0; lev--)
         {
           // find the closet node in upper layers
           if (length.size())
