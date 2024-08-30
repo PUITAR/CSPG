@@ -12,6 +12,7 @@ using namespace anns::graph;
 
 
 PYBIND11_MODULE(anns, m) {
+     
   m.doc() = "CSPG's Python APIs";
 
   using rpg_diskann_float_t = RandomPartitionGraph<float, DiskANN<float>>;
@@ -28,7 +29,7 @@ PYBIND11_MODULE(anns, m) {
     .def(py::init<size_t, size_t>(), "CSPG constructor",
          py::arg("dim"), py::arg("m"))
     .def("build", &rpg_hcnng_float_t::BuildIndex2, "Build index",
-         py::arg("base vectors"), py::arg("threads"), py::arg("arg_list"))
+         py::arg("base vectors"), py::arg("threads"), py::arg("arg_list[s,Ls,T,lambda]"))
     .def("search", &rpg_hcnng_float_t::GetTopkNNParallel2, "Search k approximate nearest neighbors",
          py::arg("query vectors"), py::arg("k"), py::arg("threads"), py::arg("ef1"), py::arg("ef2"))
     .def("size", &rpg_hcnng_float_t::IndexSize, "Get index size")
@@ -38,7 +39,7 @@ PYBIND11_MODULE(anns, m) {
     .def(py::init<size_t, size_t>(), "CSPG constructor",
          py::arg("dim"), py::arg("m"))
     .def("build", &rpg_hnsw_float_t::BuildIndex2, "Build index",
-         py::arg("base vectors"), py::arg("threads"), py::arg("arg_list"))
+         py::arg("base vectors"), py::arg("threads"), py::arg("arg_list[M,efc,lambda]"))
     .def("search", &rpg_hnsw_float_t::GetTopkNNParallel2, "Search k approximate nearest neighbors",
          py::arg("query vectors"), py::arg("k"), py::arg("threads"), py::arg("ef1"), py::arg("ef2"))
     .def("size", &rpg_hnsw_float_t::IndexSize, "Get index size")
@@ -56,7 +57,7 @@ PYBIND11_MODULE(anns, m) {
   py::class_<rpg_nsg_float_t> (m, "CSPG_NSG_FLOAT")
     .def(py::init<size_t, size_t>())
     .def("build", &rpg_nsg_float_t::BuildIndex2, "Build index",
-         py::arg("base vectors"), py::arg("threads"), py::arg("arg_list"))
+         py::arg("base vectors"), py::arg("threads"), py::arg("arg_list[R,L,lambda]"))
     .def("search", &rpg_nsg_float_t::GetTopkNNParallel2, "Search k approximate nearest neighbors",
          py::arg("query vectors"), py::arg("k"), py::arg("threads"), py::arg("ef1"), py::arg("ef2"))
     .def("size", &rpg_nsg_float_t::IndexSize, "Get index size")
@@ -66,7 +67,7 @@ PYBIND11_MODULE(anns, m) {
     .def(py::init<size_t, size_t>(), "CSPG constructor",
          py::arg("dim"), py::arg("m"))
     .def("build", &rpg_hcnng_uint8_t::BuildIndex2, "Build index",
-         py::arg("base vectors"), py::arg("threads"), py::arg("arg_list"))
+         py::arg("base vectors"), py::arg("threads"), py::arg("arg_list[s,Ls,T,lambda]"))
     .def("search", &rpg_hcnng_uint8_t::GetTopkNNParallel2, "Search k approximate nearest neighbors",
          py::arg("query vectors"), py::arg("k"), py::arg("threads"), py::arg("ef1"), py::arg("ef2"))
     .def("size", &rpg_hcnng_uint8_t::IndexSize, "Get index size")
@@ -76,7 +77,7 @@ PYBIND11_MODULE(anns, m) {
     .def(py::init<size_t, size_t>(), "CSPG constructor", 
          py::arg("dim"), py::arg("m"))
     .def("build", &rpg_hnsw_uint8_t::BuildIndex2, "Build index",
-         py::arg("base vectors"), py::arg("threads"), py::arg("arg_list"))
+         py::arg("base vectors"), py::arg("threads"), py::arg("arg_list[M,efc,lambda]"))
     .def("search", &rpg_hnsw_uint8_t::GetTopkNNParallel2, "Search k approximate nearest neighbors",
          py::arg("query vectors"), py::arg("k"), py::arg("threads"), py::arg("ef1"), py::arg("ef2"))
     .def("size", &rpg_hnsw_uint8_t::IndexSize, "Get index size")
@@ -96,7 +97,7 @@ PYBIND11_MODULE(anns, m) {
     .def(py::init<size_t, size_t>(), "CSPG constructor",
          py::arg("dim"), py::arg("m"))
     .def("build", &rpg_nsg_uint8_t::BuildIndex2, "Build index",
-         py::arg("base vectors"), py::arg("threads"), py::arg("arg_list"))
+         py::arg("base vectors"), py::arg("threads"), py::arg("arg_list[R,L,lambda]"))
     .def("search", &rpg_nsg_uint8_t::GetTopkNNParallel2, "Search k approximate nearest neighbors",
          py::arg("query vectors"), py::arg("k"), py::arg("threads"), py::arg("ef1"), py::arg("ef2"))
     .def("size", &rpg_nsg_uint8_t::IndexSize, "Get index size")

@@ -45,7 +45,7 @@ int main() {
 
 This is an example of how to use the ANNS library to build and query an index. The `main` function takes in the path to the base vectors, queries vectors, and groundtruth file, as well as the number of partitions, maximum degree, and effective query count for the index. It then builds the index and performs queries on the queries vectors, and outputs the results to a CSV file.
 
-To use the ANNS library simply, we wrap the CPP APIs with Python API, which you can use as follow.
+To use the ANNS library simply, we wrap the CPP APIs with Python API, which you can use as follow. [Example for ANNS Python API](test_anns.ipynb)
 
 ```python
 # Include the library modules

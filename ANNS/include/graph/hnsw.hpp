@@ -937,11 +937,6 @@ namespace anns
       }
     };
 
-    /// @brief Template Class
-
-    template class HNSW<float>;
-    template class HNSW<uint8_t>;
-
   }; // namespace graph
 
 }; // namespace index
