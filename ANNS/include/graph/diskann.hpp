@@ -832,8 +832,6 @@ namespace anns
       }
     };
 
-    template class DiskANN<uint8_t>;
-    template class DiskANN<float>;
     // template class DiskANN<int32_t>;
 
   } // namespace graph

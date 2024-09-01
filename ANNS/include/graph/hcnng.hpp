@@ -720,12 +720,6 @@ namespace anns
       }
     };
 
-    template class HCNNG<uint8_t>;
-
-    template class HCNNG<float>;
-
-    // template class HCNNG<int32_t>;
-
   } // namespace graph
 
 } // namespace index

@@ -839,9 +839,6 @@ namespace anns
       }
     };
 
-    // template class NSG<uint8_t>;
-    // template class NSG<float>;
-
   } // namespace graph
 
 } // namespace index

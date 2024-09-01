@@ -659,11 +659,6 @@ namespace anns
             }
         };
 
-        /// @brief Template Class
-
-        template class NSW<float>;
-        template class NSW<uint8_t>;
-
     }; // namespace graph
 
 }; // namespace index

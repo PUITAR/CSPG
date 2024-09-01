@@ -9,7 +9,6 @@ find_package(pybind11 REQUIRED)
 find_package(OpenMP REQUIRED)
 
 set(index_include_dir ${CMAKE_SOURCE_DIR}/include)
-set(index_source_dir ${CMAKE_SOURCE_DIR}/src)
 
 include_directories(${index_include_dir})
 
@@ -23,7 +22,7 @@ message(STATUS "pybind11 include directories: ${pybind11_include_dir}")
 
 include_directories(${pybind11_include_dir})
 
-file(GLOB_RECURSE index_source ${index_source_dir}/*.cpp)
+file(GLOB_RECURSE index_source ${index_include_dir}/*.cpp)
 
 add_library(anns_bindings STATIC ${index_source})
 target_compile_options(anns_bindings PUBLIC -fPIC)
