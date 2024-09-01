@@ -28,5 +28,5 @@ class CSPG(BaseANN):
 
   def query(self, q, n):
     q = q.tolist()
-    knn = index.search(q, n, 1, self.ef1, self.ef2)
+    knn = self.index.search(q, n, 1, self.ef1, self.ef2)
     return np.array(knn[0])
