@@ -1,0 +1,18 @@
+float:
+  euclidean:
+  - base_args: {}
+    constructor: CSPG_HNSW
+    disabled: false
+    docker_tag: ann-benchmarks-cspg_hnsw
+    module: ann_benchmarks.algorithms.cspg_hnsw
+    name: 'cspg_hnsw'
+    run_groups:
+      group1:
+        args: {m: 2, index_args: [[16, 256, 0.5]]}
+        query_args: [[10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 200, 300]]
+      group2:
+        args: {m: 2, index_args: [[32, 256, 0.5]]}
+        query_args: [[10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 200, 300]]
+      group3:
+        args: {m: 2, index_args: [[16, 128, 0.5]]}
+        query_args: [[10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 200, 300]]
