@@ -42,5 +42,11 @@ where the argument is one of the following options:
 Since our framework fully runs on the memory, the dataset may be large, please run the code with enough memory.
 
 ## Reference
-
+```shell
+@inproceedings{yangcspg,
+  title={CSPG: Crossing Sparse Proximity Graphs for Approximate Nearest Neighbor Search},
+  author={Yang, Ming and Cai, Yuzheng and Zheng, Weiguo},
+  booktitle={The Thirty-eighth Annual Conference on Neural Information Processing Systems}
+}
+```
 
